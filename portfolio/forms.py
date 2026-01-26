@@ -7,8 +7,15 @@ def validate_name(value):
     if not re.match(r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$', value):
         raise ValidationError('El nombre solo puede contener letras y espacios.')
 
+def validate_email(value):
+    # Regex más estricta para emails
+    email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    if not re.match(email_regex, value):
+        raise ValidationError('Ingresa un email válido en formato usuario@dominio.com')
+
 class ContactForm(forms.ModelForm):
     name = forms.CharField(validators=[validate_name])
+    email = forms.EmailField(validators=[validate_email])
 
     class Meta:
         model = ContactMessage
