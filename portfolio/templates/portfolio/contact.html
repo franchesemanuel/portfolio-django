@@ -7,25 +7,23 @@
 <div class="row">
     <div class="col-md-6">
         <h3>Información de Contacto</h3>
-        <p>Email: tuemail@example.com</p>
-        <p>Teléfono: +123 456 7890</p>
+        <p>Email: francoemanuelpp@gmail.com</p>
+        <p>Teléfono: +34667221962</p>
         <p>LinkedIn: <a href="#">Tu LinkedIn</a></p>
     </div>
     <div class="col-md-6">
         <h3>Envíame un Mensaje</h3>
-        <form>
-            <div class="mb-3">
-                <label for="name" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="name">
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email">
-            </div>
-            <div class="mb-3">
-                <label for="message" class="form-label">Mensaje</label>
-                <textarea class="form-control" id="message" rows="4"></textarea>
-            </div>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
     </div>
