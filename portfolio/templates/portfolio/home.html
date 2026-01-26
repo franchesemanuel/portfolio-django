@@ -1,0 +1,44 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block title %}Inicio - Portfolio{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div class="container">
+        <h1>Bienvenido a mi Portfolio</h1>
+        <p>Soy [Tu Nombre], desarrollador web apasionado por crear soluciones innovadoras.</p>
+        <a href="{% url 'about' %}" class="btn btn-light btn-lg">Conóceme</a>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Sobre Mí</h5>
+                <p class="card-text">Descubre mi trayectoria y habilidades.</p>
+                <a href="{% url 'about' %}" class="btn btn-primary">Ver Más</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Proyectos</h5>
+                <p class="card-text">Explora mis trabajos recientes.</p>
+                <a href="{% url 'projects' %}" class="btn btn-primary">Ver Proyectos</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Contacto</h5>
+                <p class="card-text">Ponte en contacto conmigo.</p>
+                <a href="{% url 'contact' %}" class="btn btn-primary">Contactar</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

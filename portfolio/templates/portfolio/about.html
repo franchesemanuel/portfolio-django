@@ -1,0 +1,25 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block title %}Sobre Mí - Portfolio{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <img src="{% static 'portfolio/images/profile.jpg' %}" alt="Foto de perfil" class="img-fluid rounded-circle">
+    </div>
+    <div class="col-md-8">
+        <h1>Sobre Mí</h1>
+        <p>Soy [Tu Nombre], un desarrollador web con experiencia en Django, Python y tecnologías front-end. Me apasiona crear aplicaciones web eficientes y escalables.</p>
+        <h3>Habilidades</h3>
+        <ul>
+            <li>Python / Django</li>
+            <li>HTML / CSS / JavaScript</li>
+            <li>Bootstrap / Tailwind</li>
+            <li>SQL / PostgreSQL</li>
+        </ul>
+        <h3>Experiencia</h3>
+        <p>Trabajé en varios proyectos, incluyendo aplicaciones web para empresas locales y contribuciones open-source.</p>
+    </div>
+</div>
+{% endblock %}
