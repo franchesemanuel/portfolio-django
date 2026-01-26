@@ -3,29 +3,47 @@
 {% block title %}Contacto - Portfolio{% endblock %}
 
 {% block content %}
-<h1>Contacto</h1>
-<div class="row">
-    <div class="col-md-6">
-        <h3>Información de Contacto</h3>
-        <p>Email: francoemanuelpp@gmail.com</p>
-        <p>Teléfono: +34667221962</p>
-        <p>LinkedIn: <a href="#">Tu LinkedIn</a></p>
-    </div>
-    <div class="col-md-6">
-        <h3>Envíame un Mensaje</h3>
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                    {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+<div class="container my-5 fade-in">
+    <h1 class="text-center mb-5">Contacto</h1>
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-address-book fa-3x text-primary mb-3"></i>
+                    <h3>Información de Contacto</h3>
+                    <p><i class="fas fa-envelope me-2"></i>francoemanuelpp@gmail.com</p>
+                    <p><i class="fas fa-phone me-2"></i>+34667221962</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>Disponible para proyectos</p>
                 </div>
-            {% endfor %}
-        {% endif %}
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Enviar</button>
-        </form>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="text-center mb-4">Envíame un Mensaje</h3>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary w-100">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2026 Franco Emanuel Salcedo. Todos los derechos reservados.</p>
+    </div>
+</footer>
 {% endblock %}

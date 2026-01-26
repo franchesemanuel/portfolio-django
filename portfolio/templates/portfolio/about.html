@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container my-5">
     <!-- Sección de Introducción -->
-    <div class="row align-items-center mb-5">
+    <div class="row align-items-center mb-5 fade-in">
         <div class="col-md-4 text-center">
             <img src="{% static 'portfolio/images/profile.jpg' %}" alt="Foto de Franco Emanuel Salcedo" class="img-fluid rounded-circle shadow mb-3" style="max-width: 250px;">
             <h3 class="text-primary">Franco Emanuel Salcedo</h3>
@@ -19,10 +19,7 @@
     </div>
 
     <!-- Sección de Filosofía -->
-    <div class="row mb-5">
-        <div class="col-12">
-            <div class="card shadow-sm">
-                <div class="card-body">
+    <div class="about-section fade-in">
                     <h2 class="card-title text-center mb-4">Mi Filosofía de Desarrollo</h2>
                     <p>Además del desarrollo, cuento con formación en ciberseguridad y hacking ético, lo que me permite auditar mis propios proyectos (y los de terceros) para detectar vulnerabilidades comunes como malas configuraciones, fallos de autenticación, exposición de datos, errores lógicos o malas prácticas en APIs.</p>
                     <blockquote class="blockquote text-center">
@@ -79,4 +76,11 @@
         </div>
     </div>
 </div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2026 Franco Emanuel Salcedo. Todos los derechos reservados.</p>
+    </div>
+</footer>
 {% endblock %}
