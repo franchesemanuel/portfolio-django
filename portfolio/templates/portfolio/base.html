@@ -3,32 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Portfolio{% endblock %}</title>
+    <meta name="description" content="{{ settings.descripcion_sitio }}">
+    <title>{% block title %}{{ settings.titulo_sitio }}{% endblock %}</title>
     {% load static %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">Mi Portfolio</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <i class="fas fa-code me-2"></i>{{ profile.nombre }}
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Sobre Mí</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'projects' %}">Proyectos</a></li>
+                    {% if projects_enabled %}<li class="nav-item"><a class="nav-link" href="{% url 'projects' %}">Proyectos</a></li>{% endif %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contacto</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="container mt-4">
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
         {% block content %}{% endblock %}
-    </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col-12">
+                    <p>{{ settings.texto_footer }}</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'portfolio/js/main.js' %}" defer></script>
 </body>
 </html>

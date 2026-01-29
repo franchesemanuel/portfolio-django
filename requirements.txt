@@ -1,1 +1,7 @@
 Django==6.0.1
+Pillow==12.1.0
+bleach==6.1.0
+django-axes==6.5.2
+django-csp==3.7
+django-otp==1.5.4
+django-ratelimit==4.1.0

@@ -1,26 +1,87 @@
 {% extends 'portfolio/base.html' %}
 
-{% block title %}Contacto - Portfolio{% endblock %}
+{% block title %}Contacto - {{ profile.nombre }}{% endblock %}
 
 {% block content %}
-<div class="container my-5 fade-in">
-    <h1 class="text-center mb-5">Contacto</h1>
+<section class="container my-5">
+    <div class="fade-in">
+        <h1 class="text-center mb-2">Contacto</h1>
+        <p class="text-center text-muted mb-5">¿Tienes un proyecto en mente? Me encantaría escucharlo.</p>
+    </div>
+
     <div class="row">
-        <div class="col-md-6 mb-4">
-            <div class="card h-100">
-                <div class="card-body text-center">
-                    <i class="fas fa-address-book fa-3x text-primary mb-3"></i>
-                    <h3>Información de Contacto</h3>
-                    <p><i class="fas fa-envelope me-2"></i>francoemanuelpp@gmail.com</p>
-                    <p><i class="fas fa-phone me-2"></i>+34667221962</p>
-                    <p><i class="fas fa-map-marker-alt me-2"></i>Disponible para proyectos</p>
+        <!-- Información de Contacto -->
+        <div class="col-md-5 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-info-circle text-primary me-2"></i>Información de Contacto
+                    </h3>
+
+                    {% if profile.email %}
+                    <div class="mb-4">
+                        <h6 class="text-muted text-uppercase font-weight-bold mb-2">Email</h6>
+                        <p>
+                            <i class="fas fa-envelope text-primary me-2"></i>
+                            <a href="mailto:{{ profile.email }}" class="text-decoration-none">{{ profile.email }}</a>
+                        </p>
+                    </div>
+                    {% endif %}
+
+                    {% if profile.telefono %}
+                    <div class="mb-4">
+                        <h6 class="text-muted text-uppercase font-weight-bold mb-2">Teléfono</h6>
+                        <p>
+                            <i class="fas fa-phone text-primary me-2"></i>
+                            <a href="tel:{{ profile.telefono }}" class="text-decoration-none">{{ profile.telefono }}</a>
+                        </p>
+                    </div>
+                    {% endif %}
+
+                    {% if profile.ciudad %}
+                    <div class="mb-4">
+                        <h6 class="text-muted text-uppercase font-weight-bold mb-2">Ubicación</h6>
+                        <p>
+                            <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                            {{ profile.ciudad }}
+                        </p>
+                    </div>
+                    {% endif %}
+
+                    <hr>
+
+                    <div class="mt-4">
+                        <h6 class="text-muted text-uppercase font-weight-bold mb-3">Sígueme</h6>
+                        <div>
+                            {% if profile.github_url %}
+                            <a href="{{ profile.github_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary me-2" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            {% endif %}
+                            {% if profile.linkedin_url %}
+                            <a href="{{ profile.linkedin_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary me-2" title="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            {% endif %}
+                            {% if profile.twitter_url %}
+                            <a href="{{ profile.twitter_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary me-2" title="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 mb-4">
-            <div class="card h-100">
+
+        <!-- Formulario de Contacto -->
+        <div class="col-md-7 mb-4">
+            <div class="card h-100 shadow-sm">
                 <div class="card-body">
-                    <h3 class="text-center mb-4">Envíame un Mensaje</h3>
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-envelope-open-text text-primary me-2"></i>Envíame un Mensaje
+                    </h3>
+
                     {% if messages %}
                         {% for message in messages %}
                             <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
@@ -29,21 +90,57 @@
                             </div>
                         {% endfor %}
                     {% endif %}
-                    <form method="post">
+
+                    <form method="post" novalidate>
                         {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary w-100">Enviar Mensaje</button>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.name.id_for_label }}" class="form-label">
+                                <i class="fas fa-user me-1"></i>Nombre
+                            </label>
+                            {{ form.name }}
+                            {% if form.name.errors %}
+                                <div class="invalid-feedback d-block">{{ form.name.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.email.id_for_label }}" class="form-label">
+                                <i class="fas fa-envelope me-1"></i>Email
+                            </label>
+                            {{ form.email }}
+                            {% if form.email.errors %}
+                                <div class="invalid-feedback d-block">{{ form.email.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.subject.id_for_label }}" class="form-label">
+                                <i class="fas fa-heading me-1"></i>Asunto
+                            </label>
+                            {{ form.subject }}
+                            {% if form.subject.errors %}
+                                <div class="invalid-feedback d-block">{{ form.subject.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="{{ form.message.id_for_label }}" class="form-label">
+                                <i class="fas fa-message me-1"></i>Mensaje
+                            </label>
+                            {{ form.message }}
+                            {% if form.message.errors %}
+                                <div class="invalid-feedback d-block">{{ form.message.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-paper-plane me-2"></i>Enviar Mensaje
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<!-- Footer -->
-<footer class="footer">
-    <div class="container">
-        <p>&copy; 2026 Franco Emanuel Salcedo. Todos los derechos reservados.</p>
-    </div>
-</footer>
+</section>
 {% endblock %}

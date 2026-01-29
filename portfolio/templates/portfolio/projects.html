@@ -1,38 +1,60 @@
 {% extends 'portfolio/base.html' %}
 
-{% block title %}Proyectos - Portfolio{% endblock %}
+{% block title %}{{ settings.titulo_seccion_proyectos }} - {{ profile.nombre }}{% endblock %}
 
 {% block content %}
-<div class="container my-5 fade-in">
-    <h1 class="text-center mb-5">Mis Proyectos</h1>
-    <div class="row">
-        <div class="col-md-6 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <i class="fas fa-project-diagram fa-3x text-primary mb-3"></i>
-                    <h5 class="card-title">Proyecto 1</h5>
-                    <p class="card-text">Descripción del proyecto 1. Tecnologías usadas: Django, Bootstrap.</p>
-                    <a href="#" class="btn btn-primary">Ver Proyecto</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <i class="fas fa-code-branch fa-3x text-success mb-3"></i>
-                    <h5 class="card-title">Proyecto 2</h5>
-                    <p class="card-text">Descripción del proyecto 2. Tecnologías usadas: Python, JavaScript.</p>
-                    <a href="#" class="btn btn-primary">Ver Proyecto</a>
-                </div>
-            </div>
-        </div>
+<section class="container my-5">
+    <div class="fade-in">
+        <h1 class="text-center mb-2">{{ settings.titulo_seccion_proyectos }}</h1>
+        <p class="text-center text-muted mb-5">{{ settings.descripcion_seccion_proyectos }}</p>
     </div>
-</div>
 
-<!-- Footer -->
-<footer class="footer">
-    <div class="container">
-        <p>&copy; 2026 Franco Emanuel Salcedo. Todos los derechos reservados.</p>
+    {% if projects %}
+    <div class="row">
+        {% for project in projects %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                {% if project.imagen %}
+                <img src="{{ project.imagen.url }}" class="card-img-top" alt="{{ project.titulo }}" style="height: 200px; object-fit: cover;">
+                {% else %}
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                    <i class="fas fa-image fa-3x text-muted"></i>
+                </div>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.titulo }}</h5>
+                    <p class="card-text">{{ project.descripcion_corta }}</p>
+                    
+                    {% if project.tecnologias %}
+                    <div class="mb-3">
+                        {% for tech in project.get_tecnologias_list %}
+                        <span class="badge bg-primary me-2">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <div>
+                        {% if project.demo_url %}
+                        <a href="{{ project.demo_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm me-2">
+                            <i class="fas fa-eye me-1"></i>Ver Demo
+                        </a>
+                        {% endif %}
+                        {% if project.github_url %}
+                        <a href="{{ project.github_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
+                            <i class="fab fa-github me-1"></i>GitHub
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-</footer>
+    {% else %}
+    <div class="alert alert-info text-center" role="alert">
+        <i class="fas fa-info-circle me-2"></i>
+        No hay proyectos disponibles en este momento. Vuelve pronto.
+    </div>
+    {% endif %}
+</section>
 {% endblock %}

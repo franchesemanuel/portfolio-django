@@ -1,52 +1,67 @@
 {% extends 'portfolio/base.html' %}
 {% load static %}
 
-{% block title %}Inicio - Portfolio{% endblock %}
+{% block title %}Inicio - {{ profile.nombre }}{% endblock %}
 
 {% block content %}
-<div class="hero fade-in">
+<!-- HERO SECTION -->
+<section class="hero fade-in">
     <div class="container">
-        <h1>Bienvenido a mi Portfolio</h1>
-        <p>Bienvenido a mi portfolio</p>
-        <p>Desarrollo aplicaciones web con Django, seguras, escalables y listas para crecer.
-         Creo sitios profesionales y los audito con mentalidad de ciberseguridad para que no solo funcionen, sino que estén protegidos desde el primer día.
-         </p>
+        <h1>{{ profile.nombre }}</h1>
+        <p class="subtitle">{{ profile.titulo_profesional }}</p>
+        <p>{{ profile.subtitulo_header }}</p>
         <a href="{% url 'about' %}" class="btn btn-light btn-lg">Conóceme</a>
     </div>
-</div>
+</section>
 
+<!-- SECCIÓN DE CARACTERÍSTICAS -->
 <div class="container my-5">
     <div class="row">
+        <!-- Card 1: Sobre Mí -->
         <div class="col-md-4 mb-4">
             <div class="card text-center h-100">
                 <div class="card-body">
-                    <i class="fas fa-user fa-3x text-primary mb-3"></i>
+                    <div class="mb-3">
+                        <i class="fas fa-user-tie fa-3x"></i>
+                    </div>
                     <h5 class="card-title">Sobre Mí</h5>
-                    <p class="card-text">Descubre mi trayectoria y habilidades.</p>
+                    <p class="card-text">{{ profile.descripcion_corta }}</p>
                     <a href="{% url 'about' %}" class="btn btn-primary">Ver Más</a>
                 </div>
             </div>
         </div>
+
+        <!-- Card 2: Proyectos -->
+        {% if projects_enabled %}
         <div class="col-md-4 mb-4">
             <div class="card text-center h-100">
                 <div class="card-body">
-                    <i class="fas fa-code fa-3x text-success mb-3"></i>
+                    <div class="mb-3">
+                        <i class="fas fa-rocket fa-3x"></i>
+                    </div>
                     <h5 class="card-title">Proyectos</h5>
-                    <p class="card-text">Explora mis trabajos recientes.</p>
+                    <p class="card-text">{{ settings.descripcion_seccion_proyectos }}</p>
                     <a href="{% url 'projects' %}" class="btn btn-primary">Ver Proyectos</a>
                 </div>
             </div>
         </div>
+        {% endif %}
+
+        <!-- Card 3: Contacto -->
+        {% if contact_enabled %}
         <div class="col-md-4 mb-4">
             <div class="card text-center h-100">
                 <div class="card-body">
-                    <i class="fas fa-envelope fa-3x text-info mb-3"></i>
+                    <div class="mb-3">
+                        <i class="fas fa-envelope fa-3x"></i>
+                    </div>
                     <h5 class="card-title">Contacto</h5>
-                    <p class="card-text">Ponte en contacto conmigo.</p>
+                    <p class="card-text">¿Tienes un proyecto en mente? Ponte en contacto conmigo ahora.</p>
                     <a href="{% url 'contact' %}" class="btn btn-primary">Contactar</a>
                 </div>
             </div>
         </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

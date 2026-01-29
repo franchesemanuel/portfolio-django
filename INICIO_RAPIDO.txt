@@ -1,0 +1,281 @@
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                ║
+║                   🎉 PORTFOLIO CMS - INICIO RÁPIDO 🎉                         ║
+║                                                                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                          ⚡ EN 5 MINUTOS                                       │
+└────────────────────────────────────────────────────────────────────────────────┘
+
+1️⃣  ASEGÚRATE QUE EL SERVIDOR ESTÁ CORRIENDO:
+    
+    Terminal:
+    $ cd /Users/francoemanuelsalcedo/Desktop/porfolio
+    $ .venv/bin/python manage.py runserver 8000
+    
+    ✓ Deberías ver: "Starting development server at http://127.0.0.1:8000/"
+
+2️⃣  ABRE EL ADMIN:
+    
+    Navegador:
+    http://localhost:8000/admin/
+    
+    Credenciales:
+    Usuario: franchesemanuel
+    Contraseña: Savita1991
+
+3️⃣  EDITA TU PERFIL:
+    
+    Admin → Perfil del Desarrollador
+    
+    MÍNIMO NECESARIO:
+    ✎ nombre: Tu nombre real
+    ✎ email: Tu email
+    ✎ github_url: Tu GitHub
+    ✎ linkedin_url: Tu LinkedIn
+    ✎ foto_perfil: Tu foto (JPG/PNG)
+
+4️⃣  AGREGA UN PROYECTO:
+    
+    Admin → Proyectos → + Agregar
+    
+    CAMPOS OBLIGATORIOS:
+    ✎ Título: Nombre del proyecto
+    ✎ Slug: (se auto-genera)
+    ✎ Descripción Corta: Una línea impactante
+    ✎ Imagen: Screenshot
+    ✎ Tecnologías: Django, PostgreSQL, etc
+    
+    OPCIONAL:
+    ✎ demo_url: Link al proyecto en vivo
+    ✎ github_url: Link al repositorio
+
+5️⃣  VISITA TU PORTFOLIO:
+    
+    Navegador:
+    http://localhost:8000/
+    
+    ¡Verás todos los cambios al instante! 🚀
+
+
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                        📱 PREGUNTAS FRECUENTES                                 │
+└────────────────────────────────────────────────────────────────────────────────┘
+
+❓ ¿La imagen no se sube?
+   → Debe ser JPG o PNG
+   → Máximo 5MB
+   → Mínimo 400x400px
+
+❓ ¿No veo los cambios?
+   → Recarga la página (Cmd+Shift+R en Mac)
+   → Asegúrate que el servidor está corriendo
+   → Revisa la consola del navegador (F12)
+
+❓ ¿Olvidé la contraseña del admin?
+   → Terminal: python manage.py changepassword franchesemanuel
+   → Ingresa contraseña nueva
+
+❓ ¿Cómo agrego más campos?
+   → Por ahora, solo los que ves en admin
+   → Para agregar campos, edita models.py y haz migración
+   → Mejor: usa los campos existentes
+
+❓ ¿Puedo cambiar el CSS?
+   → Sí: static/portfolio/css/style.css
+   → Los cambios se recargan automáticamente
+
+❓ ¿Puedo cambiar el HTML?
+   → Los templates están en portfolio/templates/
+   → Puedes editarlos, pero usa variables {{ }} para contenido
+
+
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                       🎨 FLUJO DE TRABAJO TÍPICO                              │
+└────────────────────────────────────────────────────────────────────────────────┘
+
+MAÑANA:
+
+  1. Abre admin → Perfil del Desarrollador
+  2. Cambias nombre, email, foto
+  3. Guardas
+  4. Visitas http://localhost:8000 → ¡CAMBIOS VISIBLES!
+
+
+PRÓXIMA SEMANA:
+
+  1. Terminas un proyecto
+  2. Abre admin → Proyectos → + Agregar
+  3. Completas datos: título, descripción, tecnologías, imagen
+  4. Guardas
+  5. El proyecto aparece en /projects/
+
+
+ANTES DE DEPLOYMENT:
+
+  1. Actualiza todos los datos del Perfil
+  2. Asegúrate que todos los links funcionan
+  3. Carga buenas fotos (profesionales)
+  4. Revisa textos sin errores
+  5. Cambia email en footer (Configuración del Sitio)
+  6. Prueba en móvil
+
+
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                         🔧 COMANDOS ÚTILES                                    │
+└────────────────────────────────────────────────────────────────────────────────┘
+
+INICIAR SERVIDOR:
+  $ .venv/bin/python manage.py runserver 8000
+
+CREAR ADMIN:
+  $ .venv/bin/python manage.py createsuperuser
+
+ACCEDER A BASE DE DATOS:
+  $ .venv/bin/python manage.py shell
+  >>> from portfolio.models import Profile
+  >>> p = Profile.get_active()
+  >>> print(p.nombre)
+
+HACER BACKUP DE BD:
+  $ cp db.sqlite3 db.sqlite3.backup
+
+RESETEAR BD (⚠️ PELIGROSO):
+  $ rm db.sqlite3
+  $ .venv/bin/python manage.py migrate
+
+
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                     📚 DOCUMENTOS DE REFERENCIA                               │
+└────────────────────────────────────────────────────────────────────────────────┘
+
+LEER PRIMERO:
+  ✓ GUIA_CMS.md              ← Guía completa para usuarios
+
+REFERENCIA TÉCNICA:
+  ✓ ARQUITECTURA_TECNICA.md  ← Para desarrolladores
+
+DENTRO DEL CÓDIGO:
+  ✓ models.py                ← Cómo están estructurados los datos
+  ✓ admin.py                 ← Cómo está customizado el admin
+  ✓ views.py                 ← Lógica de cada página
+  ✓ templates/               ← HTML que renderiza
+
+
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                         🚀 ESTRUCTURA DEL CMS                                 │
+└────────────────────────────────────────────────────────────────────────────────┘
+
+PROFILE
+  ├─ Nombre, título, subtítulo
+  ├─ Foto
+  ├─ Bio y filosofía
+  ├─ Tecnologías (CSV)
+  ├─ Email, teléfono, ubicación
+  └─ Redes sociales (GitHub, LinkedIn, Twitter)
+
+PROJECTS
+  ├─ Título, slug, descripción
+  ├─ Imagen
+  ├─ Tecnologías (badges)
+  ├─ Links (Demo, GitHub)
+  ├─ Orden
+  └─ Visible (sí/no)
+
+SERVICES
+  ├─ Nombre, descripción
+  ├─ Icono
+  ├─ Orden
+  └─ Visible (sí/no)
+
+SITE SETTINGS
+  ├─ Títulos y descripciones de secciones
+  ├─ Footer
+  ├─ Visibilidad de secciones
+  └─ Meta tags para SEO
+
+CONTACT MESSAGES
+  ├─ Nombre, email, asunto, mensaje
+  ├─ Fecha de recepción
+  └─ ¿Leído? (sí/no)
+
+
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                      ✨ CARACTERÍSTICAS IMPLEMENTADAS                          │
+└────────────────────────────────────────────────────────────────────────────────┘
+
+✅ Perfil completamente personalizable
+✅ Agregar/editar/eliminar proyectos ilimitados
+✅ Foto de perfil con preview en admin
+✅ Redes sociales dinámicas
+✅ Servicios configurables
+✅ Activar/desactivar secciones
+✅ Formulario de contacto funcional
+✅ Responsive (mobile, tablet, desktop)
+✅ Animaciones suaves
+✅ Admin interface profesional
+✅ Context processors (datos globales)
+✅ Ordenamiento automático
+✅ Lazy loading de imágenes
+✅ Badges de tecnologías
+✅ Seguimiento de mensajes (leído/no leído)
+✅ SEO ready (meta tags dinámicos)
+
+
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                       🎯 PRÓXIMOS PASOS                                       │
+└────────────────────────────────────────────────────────────────────────────────┘
+
+AHORA MISMO:
+
+  [ ] Edita tu Perfil (nombre, email, foto, redes)
+  [ ] Agrega tu primer proyecto
+  [ ] Revisa que todo se vea bien en http://localhost:8000
+  [ ] Personaliza footer y textos en Configuración del Sitio
+
+
+ESTA SEMANA:
+
+  [ ] Agrega todos tus proyectos
+  [ ] Agrega tus servicios/especialidades
+  [ ] Actualiza tu bio
+  [ ] Carga fotos profesionales
+  [ ] Prueba en móvil
+
+
+ANTES DE PRODUCCIÓN:
+
+  [ ] Revisa todos los links
+  [ ] Prueba formulario de contacto
+  [ ] Asegúrate que emails funcionen
+  [ ] Optimiza imágenes (peso)
+  [ ] Configura dominio
+  [ ] Deploy a hosting (Heroku, PythonAnywhere, etc)
+
+
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                          🆘 NEED HELP?                                        │
+└────────────────────────────────────────────────────────────────────────────────┘
+
+1. Revisa GUIA_CMS.md para preguntas sobre admin
+2. Revisa ARQUITECTURA_TECNICA.md para preguntas técnicas
+3. Abre Developer Tools (F12) para ver errores
+4. Revisa logs en terminal del servidor
+5. Limpia caché del navegador (Cmd+Shift+R)
+
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                ║
+║              🎉 ¡TU PORTFOLIO CMS ESTÁ LISTO PARA USAR! 🎉                   ║
+║                                                                                ║
+║                    http://localhost:8000/admin/                               ║
+║                    Usuario: franchesemanuel                                   ║
+║                    Contraseña: Savita1991                                     ║
+║                                                                                ║
+║                      ¡A PERSONALIZAR AHORA! 🚀                               ║
+║                                                                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+

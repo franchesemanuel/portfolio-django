@@ -1,86 +1,97 @@
 {% extends 'portfolio/base.html' %}
 {% load static %}
 
-{% block title %}Sobre Mí - Portfolio{% endblock %}
+{% block title %}Sobre Mí - {{ profile.nombre }}{% endblock %}
 
 {% block content %}
-<div class="container my-5">
-    <!-- Sección de Introducción -->
+<!-- SECCIÓN DE INTRODUCCIÓN -->
+<section class="container my-5">
     <div class="row align-items-center mb-5 fade-in">
-        <div class="col-md-4 text-center">
-            <img src="{% static 'portfolio/images/profile.jpg' %}" alt="Foto de Franco Emanuel Salcedo" class="img-fluid rounded-circle shadow mb-3" style="max-width: 250px;">
-            <h3 class="text-primary">Franco Emanuel Salcedo</h3>
-            <p class="text-muted">Desarrollador Web & Especialista en Ciberseguridad</p>
+        <div class="col-md-4 text-center mb-4 mb-md-0">
+            {% if profile.foto_perfil %}
+                <img src="{{ profile.foto_perfil.url }}" alt="{{ profile.nombre }}" class="img-fluid rounded-circle shadow mb-4" style="max-width: 280px;">
+            {% else %}
+                <div class="img-fluid rounded-circle shadow mb-4 bg-light d-flex align-items-center justify-content-center" style="max-width: 280px; height: 280px; margin: 0 auto;">
+                    <i class="fas fa-user fa-5x text-muted"></i>
+                </div>
+            {% endif %}
+            <h2>{{ profile.nombre }}</h2>
+            <p class="text-muted">{{ profile.titulo_profesional }}</p>
         </div>
         <div class="col-md-8">
             <h1 class="mb-4">Sobre Mí</h1>
-            <p class="lead">Soy desarrollador web especializado en Django, con un enfoque claro en seguridad, calidad y buenas prácticas. Creo aplicaciones web funcionales, escalables y profesionales, pensadas desde el inicio para ser seguras y mantenibles.</p>
+            <p class="lead">{{ profile.bio }}</p>
         </div>
     </div>
+</section>
 
-    <!-- Sección de Filosofía -->
+<!-- SECCIÓN DE FILOSOFÍA -->
+<section class="container mb-5">
     <div class="about-section fade-in">
-                    <h2 class="card-title text-center mb-4">Mi Filosofía de Desarrollo</h2>
-                    <p>Además del desarrollo, cuento con formación en ciberseguridad y hacking ético, lo que me permite auditar mis propios proyectos (y los de terceros) para detectar vulnerabilidades comunes como malas configuraciones, fallos de autenticación, exposición de datos, errores lógicos o malas prácticas en APIs.</p>
-                    <blockquote class="blockquote text-center">
-                        <p class="mb-0">"Una web no solo debe verse bien y funcionar, también debe ser segura."</p>
-                    </blockquote>
-                </div>
-            </div>
-        </div>
+        <h2 class="text-center mb-4">Mi Filosofía de Desarrollo</h2>
+        <blockquote class="blockquote text-center">
+            <p class="mb-0"><em>"{{ profile.filosofia }}"</em></p>
+        </blockquote>
     </div>
+</section>
 
-    <!-- Sección de Habilidades -->
-    <div class="row mb-5">
-        <div class="col-12">
-            <h2 class="text-center mb-4">Desarrollo con Enfoque en Seguridad</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">Tecnologías Principales</h5>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check text-success me-2"></i>Django y su sistema de autenticación</li>
-                                <li><i class="fas fa-check text-success me-2"></i>Protección CSRF integrada</li>
-                                <li><i class="fas fa-check text-success me-2"></i>Estructuras limpias y mantenibles</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">Enfoque en Seguridad</h5>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-shield-alt text-primary me-2"></i>Validación de datos y control de accesos</li>
-                                <li><i class="fas fa-shield-alt text-primary me-2"></i>Auditorías básicas en cada proyecto</li>
-                                <li><i class="fas fa-shield-alt text-primary me-2"></i>Pruebas de seguridad continuas</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sección de Formación Continua -->
+<!-- SECCIÓN DE HABILIDADES -->
+<section class="container mb-5">
+    <h2 class="text-center mb-5">Desarrollo con Enfoque en Seguridad</h2>
+    
     <div class="row">
-        <div class="col-12">
-            <div class="card shadow-sm bg-light">
-                <div class="card-body text-center">
-                    <h2 class="card-title">Formación Continua</h2>
-                    <p class="card-text">Actualmente continúo formándome en ciberseguridad ofensiva y defensiva, aplicando estos conocimientos a cada desarrollo para ofrecer soluciones web más completas, confiables y profesionales.</p>
-                    <p class="card-text"><strong>Este portfolio muestra proyectos donde combino desarrollo + seguridad, una dupla cada vez más valorada en el mercado actual.</strong></p>
+        <!-- Tecnologías Principales -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-code text-primary me-2"></i>Tecnologías Principales
+                    </h5>
+                    <ul class="list-unstyled">
+                        {% for tech in tecnologias %}
+                        <li class="mb-3">
+                            <i class="fas fa-check text-success me-2"></i>
+                            <strong>{{ tech }}</strong>
+                        </li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<!-- Footer -->
-<footer class="footer">
-    <div class="container">
-        <p>&copy; 2026 Franco Emanuel Salcedo. Todos los derechos reservados.</p>
+        <!-- Servicios Ofrecidos -->
+        {% if services %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-shield-alt text-primary me-2"></i>Servicios
+                    </h5>
+                    <ul class="list-unstyled">
+                        {% for service in services %}
+                        <li class="mb-3">
+                            <i class="{{ service.icono }} text-success me-2"></i>
+                            <strong>{{ service.nombre }}</strong>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
-</footer>
+</section>
+
+<!-- SECCIÓN DE CONTACTO -->
+<section class="container mb-5">
+    <div class="card shadow-sm bg-light border-0">
+        <div class="card-body text-center py-5">
+            <h2 class="card-title mb-3">
+                <i class="fas fa-envelope text-primary me-2"></i>Ponte en Contacto
+            </h2>
+            <p class="card-text lead mb-4">{{ profile.descripcion_corta }}</p>
+            <a href="{% url 'contact' %}" class="btn btn-primary btn-lg">Enviar Mensaje</a>
+        </div>
+    </div>
+</section>
 {% endblock %}
